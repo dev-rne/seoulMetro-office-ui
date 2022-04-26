@@ -27,36 +27,36 @@ const BoxFrame = () =>{
                     .top-L{
                         top: -1px;
                         left: -1px;
-                        border-top: 2px solid #1fb8ff;
-                        border-left: 2px solid #1fb8ff;
+                        border-top: 2px solid #00c3ff;
+                        border-left: 2px solid #00c3ff;
                         border-top-left-radius: 12px;
                     }
                     .top-R{
                         top: -1px;
                         right: -1px;
-                        border-top: 2px solid #1fb8ff;
-                        border-right: 2px solid #1fb8ff;
+                        border-top: 2px solid #00c3ff;
+                        border-right: 2px solid #00c3ff;
                         border-top-right-radius: 12px;
                     }
                     .bottom-L{
                         bottom: -1px;
                         left: -1px;
-                        border-bottom: 2px solid #1fb8ff;
-                        border-left: 2px solid #1fb8ff;
+                        border-bottom: 2px solid #00c3ff;
+                        border-left: 2px solid #00c3ff;
                         border-bottom-left-radius: 12px;
                     }
                     .bottom-R{
                         bottom: -1px;
                         right: -1px;
-                        border-bottom: 2px solid #1fb8ff;
-                        border-right: 2px solid #1fb8ff;
+                        border-bottom: 2px solid #00c3ff;
+                        border-right: 2px solid #00c3ff;
                         border-bottom-right-radius: 12px;
                     }
         
                     .blur{
-                        filter: blur(3px);
-                        -webkit-filter: blur(3px);
-                        border-color: #1fe5ff;
+                        filter: blur(4px);
+                        -webkit-filter: blur(4px);
+                        border-color: #00fff2;
                     }
                 }
                 `}

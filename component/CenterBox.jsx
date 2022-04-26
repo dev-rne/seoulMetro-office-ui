@@ -1,28 +1,32 @@
 import { observer } from 'mobx-react';
-import useStore from 'store/Store.js';
-import { Tooltip } from 'antd';
+import useStore from 'store/store.js';
+import { Popover} from 'antd';
+import BoxFrame from './BoxFrame';
+import PopoverModal from './PopoverModal';
 
 const MainDashboard = observer(() => {
-  const store = useStore();
+  const mainStore = useStore().Main;
 
-  const {baring} = store.selectTrain;
+  const {baring} = mainStore.selectTrain;
   return (
       <div className="center-box">
            <img src={require('../assets/center-bg.png')} alt="" />
            <div className="baring-box">
              {baring && baring.map((list, i) => {
                return(
-                <Tooltip title={list.name} color={list.err ? "volcano" : "cyan"} key={i}>
-                  <img src={list.err ? require('../assets/baring-err.png') : require('../assets/baring.png')} className={list.err ? `baring${i + 1} baring err` : `baring${i + 1} baring`}/>
-               </Tooltip>
+                <Popover content={contents(i)} key={i}>
+                  <img src={list.err ? require('../assets/baring-err.png') : require('../assets/baring.png')} className={list.err ? `baring${i + 1} baring err` : `baring${i + 1} baring`}  key={`img${i}`}/>
+                  </Popover>
                )
              })}
            </div>
+           <BoxFrame/>
         <style jsx>
-         {`
+         {` 
             .center-box{
-                     width:100%; 
+                    width:calc(56% - 24px);
                      height:100%;
+                     border:1px solid #0AA4DE;
                      border-radius:10px;
                      position:relative;
                       box-sizing:border-box;
@@ -116,5 +120,30 @@ const MainDashboard = observer(() => {
   )
 })
 
-
 export default MainDashboard;
+
+const contents = (i) =>{
+  return (
+    <div className='popover' >
+      <div className="contents">
+      <BoxFrame/>
+      <PopoverModal prop={i}/>
+      </div>
+      <style jsx>
+         {`
+         .popover{
+             width:350px;
+             height:500px;
+             .contents{
+               width:100%;
+               height:100%;
+               background:#001e3ace;
+               position:relative;
+               border:1px solid #74BBD5;
+             }
+         }
+         `}
+        </style>
+    </div>
+  )
+}

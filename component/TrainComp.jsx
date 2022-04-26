@@ -1,16 +1,11 @@
-import trainData from './data/train.json';
 import trainIcon from 'assets/trainIcon.png';
 import {useEffect} from 'react';
 import { observer } from 'mobx-react';
-import useStore from 'store/Store.js'
+import useStore from 'store/store.js'
 
 const TrainComp = observer(() => {
-    const store = useStore();
-
-    useEffect(() => {
-        store.showList(trainData)
-    },[])
-
+    const mainStore = useStore().Main;
+    useEffect(() => {mainStore.callTrainData()},[])
   return (
       <div className="trainComp">
           <div className="bg">
@@ -20,9 +15,9 @@ const TrainComp = observer(() => {
             <img src={require('../assets/comp-side.png')} className="sideL"/>
             <img src={require('../assets/comp-side.png')} className="sideR"/>
           <div className="train-box">
-            {store.trainList.train && store.trainList.train.map((list,i) => {
+            {mainStore.trainList.train && mainStore.trainList.train.map((list,i) => {
                 return(
-                    <div className="train" key={i} onClick={() =>  store.changeList(i)}>
+                    <div className="train" key={i} onClick={() =>  mainStore.changeList(i)}>
                         <img src={trainIcon} className="trainIcon" />
                         <div className="name">
                             <img src={require('../assets/nameIcon.png')} />
@@ -98,6 +93,7 @@ const TrainComp = observer(() => {
                             align-items:center;
                             font-size:18px;
                             font-weight:600;
+                            color:white;
 
                             img{
                                 width:200%;

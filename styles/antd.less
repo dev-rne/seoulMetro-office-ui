@@ -1,6 +1,52 @@
-@import "~antd/dist/antd.dark.less";
+@import '~antd/dist/antd.dark.less'; // Introduce the official dark less style entry file
 
-@primary-color: #257cff; // primary color for all components
-// ---select-------
-@select-item-selected-bg: #257cff; 
-@select-border-color: #3d4d81; 
+@primary-color: #c02428;
+
+.@{popover-prefix-cls} {
+    &-inner {
+    background: transparent;
+    overflow: hidden;
+    border-radius:12px;
+  }
+  &-inner-content {
+  padding: 0;
+  }
+
+  &-placement-top {
+    z-index: 2;
+    padding-bottom:0
+
+
+  }
+  &-arrow {
+    display: none;
+  }
+}
+
+.progress-box{
+  .@{progress-prefix-cls} {
+    &-bg {
+     height: 24px !important;
+    }
+    &-outer {
+      margin-right: 0;
+      padding-right: 0;
+      .@{progress-prefix-cls}-show-info & {
+        margin-right: 0;
+        padding-right:0;
+      }
+    }
+    &-text {
+     position:absolute;
+     top:50%;
+     right:4px;
+     transform: translateY(-50%);
+     z-index: 1;
+    }
+  }
+}
+.@{progress-prefix-cls} {
+  &-bg {
+   height: 12px !important;
+  }
+}

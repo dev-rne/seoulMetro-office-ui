@@ -1,6 +1,7 @@
 import '../styles/globals.css';
 import Layout from '../component/Layout';
 import 'antd/dist/antd.css';
+import '../styles/antd.less';
 import {useState, useEffect} from 'react';
 
 

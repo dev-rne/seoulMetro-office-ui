@@ -1,10 +1,18 @@
 import { observer } from 'mobx-react';
 import BoxFrame from './BoxFrame';
-import useStore from 'store/Store.js';
+import useStore from 'store/store.js';
 import CenterBox from './CenterBox';
+import LeftBox from './LeftBox';
+import RightBox from './RightBox';
+import { useEffect } from 'react';
 
 const MainDashboard = observer(() => {
-  const store = useStore();
+  const mainStore = useStore().Main;
+  const modalStore = useStore().Modal;
+
+  useEffect(() => {
+    modalStore.callFaultStatusData()
+  },[])
 
   return (
       <div className="mainComp">
@@ -13,19 +21,13 @@ const MainDashboard = observer(() => {
             <img src={require('../assets/main-title.svg')} className="mainTop" />
             <BoxFrame/>
             <div className="title-box">
-            {store.selectTrain &&
-             store.selectTrain.name}
+            {mainStore.selectTrain &&
+             mainStore.selectTrain.name}
             </div>
             <div className="main-box">
-              <div className="left-box">
-
-              </div>
-              <div className="center-box">
-                <CenterBox/>
-              </div>
-              <div className="right-box">
-
-              </div>
+              <LeftBox/>
+              <CenterBox/>
+              <RightBox/>
             </div>
           </div>
         <style jsx>
@@ -80,27 +82,8 @@ const MainDashboard = observer(() => {
                    display:flex;
                    gap:12px;
 
-                   .left-box{
-                     width:22%;
-                     height:100%
-                   }
-                   .center-box{
-                     width:calc(56% - 40px);
-                     height:100%;
-                     border:1px solid #0AA4DE;
-                     border-radius:10px;
-                     position:relative;
-                      box-sizing:border-box;
-                      overflow:hidden;
-                      background-color:rgba(0,0,0,0.3);
-                      img{
-                        width:100%;
-                      }
-                   }
-                   .right-box{
-                     width:22%;
-                     height:100%
-                   }
+                   
+                  
                  }
              }
          }

@@ -41,6 +41,7 @@ export default function NotFound(){
               }
               span{
                   margin-top:-10px;
+                  color:white;
               }
 
               div{
