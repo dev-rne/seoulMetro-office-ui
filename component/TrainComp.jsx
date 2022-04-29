@@ -41,9 +41,9 @@ const TrainComp = observer(() => {
                     height:100%;
                     top:0;
                     left:0;
-                    background:linear-gradient(to right, #003F64 10%, #002033 15%, #001C2D 85%, #003F64);
-                    border-top: 1px solid #0AA3DE;
-                    border-bottom: 1px solid #0AA3DE;
+                    background:linear-gradient(to right, #1a4744 10%, #002033 15%, #001C2D 85%, #1a4744);
+                    border-top: 1px solid #31be6cc1;
+                    border-bottom: 1px solid #31be6cc1;
                     clip-path: polygon(0.7% 0, 99.3% 0, 100% 10%, 100% 91%, 99.3% 100%, 0.7% 100%, 0 90%, 0 10%);
                     .check{
                         width:100%;
@@ -112,14 +112,14 @@ const TrainComp = observer(() => {
                             top:0;
                             left:0;
                             border-radius:10px;
-                            border: 1px solid #09CCFF;
+                            border: 1px solid #24e675;
                             animation: err 1.5s infinite;
                         }
 
                         @keyframes err{
-                            from{background: #3bd8ff40}
-                            50%{background: #3bd8ff13}
-                            to{background: #3bd8ff40}
+                            from{background: #13fd7428}
+                            50%{background: #24e67514}
+                            to{background: #13fd7428}
                         }
                     }
                 }
