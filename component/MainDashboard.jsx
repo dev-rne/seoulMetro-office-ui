@@ -5,14 +5,21 @@ import CenterBox from './CenterBox';
 import LeftBox from './LeftBox';
 import RightBox from './RightBox';
 import { useEffect } from 'react';
+import Drawer from './Drawer'
 
 const MainDashboard = observer(() => {
   const mainStore = useStore().Main;
   const modalStore = useStore().Modal;
 
   useEffect(() => {
-    modalStore.callFaultStatusData()
+    modalStore.callFaultStatusData();
+    mainStore.callEventData();
   },[])
+
+  const showConsole = () => {
+    mainStore.showModal = !mainStore.showModal;
+  }
+  const alram = mainStore.eventData.length;
 
   return (
       <div className="mainComp">
@@ -29,7 +36,11 @@ const MainDashboard = observer(() => {
               <CenterBox/>
               <RightBox/>
             </div>
+            <div className="event-console" onClick={showConsole}>
+              시스템 알람 이력
+            </div>
           </div>
+              <Drawer/>
         <style jsx>
          {`
          .mainComp{
@@ -81,10 +92,25 @@ const MainDashboard = observer(() => {
                    padding:12px;
                    display:flex;
                    gap:12px;
-
-                   
-                  
                  }
+
+                 .event-console{
+                   position:fixed;
+                   bottom:0;
+                   left:50%;
+                   transform:translateX(-50%);
+                   padding:8px 50px;
+                   background: linear-gradient(to bottom, #005C9A,#004B77, #003656);
+                   font-size:16px;
+                   font-weight:600;
+                   border-top-left-radius:20px;
+                   border-top-right-radius:20px;
+                   box-shadow:2px 2px 8px rgba(0,0,0,0.4);
+                   cursor:pointer;
+                   transition:0.4s;
+                   z-index:10
+                 }
+                
              }
          }
          `}

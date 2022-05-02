@@ -11,7 +11,7 @@ export default function TopComp(){
                 <div className="img">
                 <img src={require('../assets/logo.svg')} alt="" className='logo'/>
                 </div>
-                <div className='title'>전동차 차축베어링 예방진단 시스템</div>
+                <div className='title'>전동차 차축베어링 상태진단장치 시스템</div>
                 <div className="time-box">
                 <Time />
                 </div>
@@ -46,7 +46,7 @@ export default function TopComp(){
                     }
                     .title{
                         z-index:1;
-                        font-size:24px;
+                        font-size:22px;
                         font-weight:700;
                         width:50%;
                         text-align:center;
