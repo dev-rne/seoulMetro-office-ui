@@ -1,4 +1,4 @@
-import useStore from 'store/store.js';
+import useStore from 'component/store/store.js';
 import { observer } from 'mobx-react';
 import { Modal } from 'antd';
 import {useState} from 'react'

@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react';
 import BoxFrame from './BoxFrame';
-import useStore from 'store/store.js';
+import useStore from 'component/store/store.js';
 import CenterBox from './CenterBox';
 import LeftBox from './LeftBox';
 import RightBox from './RightBox';

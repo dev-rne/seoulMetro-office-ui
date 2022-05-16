@@ -1,7 +1,7 @@
 import trainIcon from 'assets/trainIcon.png';
 import {useEffect} from 'react';
 import { observer } from 'mobx-react';
-import useStore from 'store/store.js'
+import useStore from 'component/store/store.js'
 
 const TrainComp = observer(() => {
     const mainStore = useStore().Main;

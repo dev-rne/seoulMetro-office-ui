@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react';
-import useStore from 'store/store.js';
+import useStore from 'component/store/store.js';
 import { Drawer } from 'antd';
 
 const DrawerComp = observer(() => {

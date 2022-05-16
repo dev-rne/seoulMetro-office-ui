@@ -1,7 +1,9 @@
 {
   "name": "new-subway-dashboard",
+  "description": "Seoul Metro Dashbaord",
+  "repository": "https://github.com/EUNYHE-SHIN/seoul-metro-dashbard.git",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
