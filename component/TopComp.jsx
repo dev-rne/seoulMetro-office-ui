@@ -84,3 +84,11 @@ const Time = () =>{
         </>
     )
 }
+
+
+export async function getServerSideProps(){
+    return{
+        props:{
+        }
+    }
+  }

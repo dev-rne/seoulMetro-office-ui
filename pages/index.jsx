@@ -3,7 +3,7 @@ import TopComp from "component/TopComp";
 import TrainComp from "component/TrainComp";
 import MainDashboard from "component/MainDashboard";
 
-export default function Home() {
+export default function Home(props) {
   return (
     <>
       <Seo title="Dashboard" />
@@ -23,4 +23,12 @@ export default function Home() {
       </div>
     </>
   )
+}
+
+
+export async function getServerSideProps(){
+  return{
+      props:{
+      }
+  }
 }
