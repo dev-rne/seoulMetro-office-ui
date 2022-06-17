@@ -4,18 +4,27 @@ import useStore from 'component/store/store.js';
 import CenterBox from './CenterBox';
 import LeftBox from './LeftBox';
 import RightBox from './RightBox';
-import { useEffect } from 'react';
-import Drawer from './Drawer'
+import { useEffect, useState } from 'react';
+import useInterval from 'component/hook/useInterval';
 
 const MainDashboard = observer(() => {
   const mainStore = useStore().Main;
-  const modalStore = useStore().Modal;
+  
+    useEffect(() => {
+      mainStore.callAnomaly();
+    },[])
 
-  useEffect(() => {
-    modalStore.callFaultStatusData();
-    mainStore.callEventData();
-  },[])
+    useEffect(()=>{
+      if(mainStore.anomaly.length === 0) return;
+       if(mainStore.location !== ""){
+        mainStore.callRms(mainStore.location)
+       }
+    },[mainStore.location])
 
+    useInterval(() => {
+      mainStore.callAnomaly();
+    }, 15000)
+    
   const showConsole = () => {
     mainStore.showModal = !mainStore.showModal;
   }
@@ -24,23 +33,21 @@ const MainDashboard = observer(() => {
   return (
       <div className="mainComp">
           <div className="content">
-            <div className="mainbg"></div>
             <img src={require('../assets/main-title.svg')} className="mainTop" />
             <BoxFrame/>
-            <div className="title-box">
+            <span className="title-box">
             {mainStore.selectTrain &&
              mainStore.selectTrain.name}
-            </div>
+            </span>
             <div className="main-box">
               <LeftBox/>
               <CenterBox/>
-              <RightBox/>
             </div>
-            <div className="event-console" onClick={showConsole}>
+            {/* <div className="event-console" onClick={showConsole}>
               시스템 알람 이력
-            </div>
+            </div> */}
           </div>
-              <Drawer/>
+              {/* <Drawer/> */}
         <style jsx>
          {`
          .mainComp{
@@ -59,29 +66,18 @@ const MainDashboard = observer(() => {
                  .mainTop{
                     position:absolute;
                     top:-2px;
-                    left: 50%;
+                    left: calc(61.5% + 12px);
                     transform: translateX(-50%);
                     z-index:2;
                  }
-                 .mainbg {
-                     position:absolute;
-                     top:0;
-                     left:0;
-                     width:100%;
-                     height:100%;
-                     background:#04111d84;
-                     z-index:0;
-                 }
 
                  .title-box {
-                   width:100%;
-                   text-align:center;
-                   z-index: 1;
                    color:white;
                    font-size:20px;
                    position:absolute;
                    top:0;
-                   left:0;
+                   left: calc(61.5% + 12px);
+                   transform: translateX(-50%);
                    font-weight:600;
                    z-index:2;
                  }

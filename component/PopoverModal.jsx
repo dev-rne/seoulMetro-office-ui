@@ -45,14 +45,14 @@ const PopoverModal = observer(({prop}) => {
           </div>
         </div>
         <div className="chartbox">
-          <BoxFrameSmall/>
+          <BoxFrameSmall />
           <div className="title">brg01 Overall Trend (m/s2)</div>
           <div className="content">
             <ModalSpectrumChart/>
           </div>
         </div>
         <div className="chartbox">
-          <BoxFrameSmall/>
+          <BoxFrameSmall />
           <div className="title">brg01 Overall Trend (m/s2)</div>
           <div className="content">
             <ModalTrendChart/>

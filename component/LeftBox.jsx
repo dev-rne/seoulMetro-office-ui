@@ -24,7 +24,7 @@ const LeftBox = observer(() => {
         <style jsx>
          {`
          .left-box{
-          width:22%;
+          width:23%;
           height:100%;
           display:flex;
           flex-direction:column;

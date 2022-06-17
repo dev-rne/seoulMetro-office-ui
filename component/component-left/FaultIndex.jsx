@@ -1,14 +1,25 @@
-import FaultIndexChart from '../chart/FaultIndexChart'
+import LineChartRms from 'component/chart/LineChartRms';
+import useStore from 'component/store/store.js';
+import {useState, useEffect} from 'react';
+import { observer } from 'mobx-react';
 
-const FaultIndex = () => {
+const FaultIndex =  observer(() => {
+
+  const store = useStore().Main;
+  const [location, setLocation] = useState(null);
+
+  useEffect(() => {
+    setLocation(store.location)
+  },[store.location])
+
   return (
       <div className="box">
         <div className="title">
           <img src={require('../../assets/circle.svg')} />
-          <span>Fault Index</span>
+          <span>Anomaly bearing RMS trend [{location}]</span>
         </div>
         <div className="content">
-          <FaultIndexChart/>
+          <LineChartRms data={store.rms} />
         </div>
         <style jsx>
          {`
@@ -35,7 +46,7 @@ const FaultIndex = () => {
         </style>
       </div>
   )
-}
+})
 
 
 export default FaultIndex;

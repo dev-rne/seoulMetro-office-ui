@@ -1,0 +1,30 @@
+{
+    "anomaly":[
+        {
+            "name": "A001-baring",
+            "location":"1-1",
+            "spot": 1
+        },
+        {
+            "name": "A002-baring",
+            "location":"2-2",
+            "spot": 2
+        },
+        {
+            "name": "A005-baring",
+            "location":"1-5",
+            "spot": 1
+        },
+        {
+            "name": "A003-baring",
+            "location":"7-3",
+            "spot": 7
+        },
+        {
+            "name": "A006-baring",
+            "location":"4-6",
+            "spot": 4
+        }
+       
+    ]
+}

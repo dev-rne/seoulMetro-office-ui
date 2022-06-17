@@ -1,30 +1,60 @@
 import { observer } from 'mobx-react';
 import useStore from 'component/store/store.js';
-import { Popover} from 'antd';
+import { Modal } from 'antd';
 import BoxFrame from './BoxFrame';
+import React, { useEffect, useState } from 'react';
 import PopoverModal from './PopoverModal';
+import ModalContents from './ModalContents';
 
 const MainDashboard = observer(() => {
   const mainStore = useStore().Main;
 
-  const {baring} = mainStore.selectTrain;
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [bearing, setBearing] = useState(0);
+
+  const showModal = (idx) => {
+    setIsModalVisible(true);
+    setBearing(idx)
+    mainStore.callTotalChart(`${mainStore.selectTrain.key}-${idx+1}`)
+    mainStore.callModalStatus(`${mainStore.selectTrain.key}-${idx+1}`)
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
+  const [bearingStatus, setBearingStatus] = useState([])
+
+  useEffect(() => {
+    setBearingStatus(mainStore.selectTrain.baring);
+    if(mainStore.anomaly.length === 0) return;
+    let dataArr = mainStore.selectTrain.baring
+    for(let i =0; i < mainStore.anomaly.length; i++){
+      if(mainStore.selectTrain.key === mainStore.anomaly[i].carriage_number){
+        dataArr[mainStore.anomaly[i].bearing_number - 1].err = true
+      }
+    }
+    setBearingStatus(dataArr);
+  },[mainStore.selectTrain])
+
   return (
       <div className="center-box">
            <img src={require('../assets/center-bg.png')} alt="" />
            <div className="baring-box">
-             {baring && baring.map((list, i) => {
-               return(
-                <Popover content={contents(i)} key={i}>
-                  <img src={list.err ? require('../assets/baring-err.png') : require('../assets/baring.png')} className={list.err ? `baring${i + 1} baring err` : `baring${i + 1} baring`}  key={`img${i}`}/>
-                  </Popover>
+             {bearingStatus && bearingStatus.map((list, i) => {
+               return (
+                 <img src={list.err ? require('../assets/baring-err.png') : require('../assets/baring.png')} className={list.err ? `baring${i + 1} baring err` : `baring${i + 1} baring`} key={`img${i}`} onClick={mainStore.selectTrain.key !== 9 ? () => showModal(i) : () => showModal(bearingStatus.length - (i + 1))}/> 
                )
              })}
            </div>
+           <Modal visible={isModalVisible} onCancel={handleCancel} footer={null} className="bearingModal">
+              <ModalContents bearing={bearing}/>
+            </Modal>
            <BoxFrame/>
         <style jsx>
          {` 
             .center-box{
-                    width:calc(56% - 24px);
+                    width:calc(77% - 12px);
                      height:100%;
                      border:1px solid #0AA4DE;
                      border-radius:10px;
@@ -32,6 +62,7 @@ const MainDashboard = observer(() => {
                       box-sizing:border-box;
                       overflow:hidden;
                       background-color:rgba(0,0,0,0.3);
+                      
                       img{
                         width:100%;
                         height:100%;
@@ -58,44 +89,47 @@ const MainDashboard = observer(() => {
                           cursor:pointer;
 
                           &.baring1{
-                            width: 19%;
-                            top: 84%;
-                            left: 28%;
+                            width: 13%;
+                            top:  70%;
+                            left: 19.5%;
                           }
                           &.baring2{
-                            width: 18%;
-                            top:  71%;
-                            left: 14%;
+                            width: 14%;
+                            top: 84%;
+                            left: 30%;
+                          
                           }
                           &.baring3{
-                            width: 17%;
-                            top: 72%;
-                            left: 51%;
+                            width: 12.5%;
+                            top: 60%;
+                            left: 38%;
                           }
                           &.baring4{
-                            width: 16%;
-                            top: 60%;
-                            left: 36%;
+                            width: 12.5%;
+                            top: 72.5%;
+                            left: 49.5%;
+                           
                           }
                           &.baring5{
-                            width: 16%;
-                            top: 60%;
-                            left: 77%;
+                            width: 12%;
+                            top: 51%;
+                            left: 62%;
                           }
                           &.baring6{
-                            width: 15%;
-                            top: 50%;
-                            left: 66%;
+                            width: 12%;
+                            top: 62%;
+                            left: 71.5%;
+                           
                           }
                           &.baring7{
-                            width: 13%;
-                            top: 50%;
-                            left: 95%;
+                            width: 11%;
+                            top: 42%;
+                            left: 78%;
                           }
                           &.baring8{
-                            width: 12%;
-                            top: 40%;
-                            left: 83%;
+                            width: 11.5%;
+                            top: 52%;
+                            left: 89%;
                           }
                           &.err{
                             animation: err 1.2s infinite;

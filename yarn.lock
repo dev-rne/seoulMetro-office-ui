@@ -247,6 +247,11 @@
     mkdirp "^1.0.4"
     rimraf "^3.0.2"
 
+"@ramonak/react-progress-bar@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@ramonak/react-progress-bar/-/react-progress-bar-5.0.0.tgz#715131a76f32872b1457bdfeb95f96a60222d0fc"
+  integrity sha512-5jvpTEymdgDVPFz60Zg2qC4TZdxneimJ8xwcd6ljIlKlPg8n4RMzProlRpcfV3y0Is3a6Of70KLNoW+SBFh9mA==
+
 "@rushstack/eslint-patch@1.0.8":
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.0.8.tgz#be3e914e84eacf16dbebd311c0d0b44aa1174c64"

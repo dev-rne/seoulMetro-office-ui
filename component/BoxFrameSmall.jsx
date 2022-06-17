@@ -1,4 +1,4 @@
-const BoxFrame = () =>{
+const BoxFrame = ({edge}) =>{
     return(
         <div className="boxFrame">
              <div className="box-edge top-L "></div>

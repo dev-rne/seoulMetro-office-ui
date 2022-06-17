@@ -1,4 +1,5 @@
 import '../styles/globals.css';
+import 'styles/index.scss';
 import Layout from '../component/Layout';
 // import 'antd/dist/antd.css';
 import '../styles/antd.less';

@@ -1,8 +1,7 @@
 {
     "data":{
-        "normal":5,
-        "warn":1,
-        "critical":1,
-        "sevenDays":2
+        "total":80,
+        "normal":76,
+        "critical":4
     }
 }

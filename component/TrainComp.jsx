@@ -23,7 +23,7 @@ const TrainComp = observer(() => {
                             <img src={require('../assets/nameIcon.png')} />
                             <div className="title">{list.name}</div>
                         </div>
-                        <div className={list.check ? "check" : ""}  ></div>
+                        <div className={list.check ? "check unCheck" : "unCheck"}  ></div>
                     </div>
                 )
             })}
@@ -105,15 +105,25 @@ const TrainComp = observer(() => {
                             }
                         }
 
-                        .check{
+                       
+
+                        .unCheck{
+                            border:1px solid rgba(0,0,0,0);
                             width:100%;
                             height:100%;
                             position:absolute;
                             top:0;
                             left:0;
                             border-radius:10px;
-                            border: 1px solid #24e675;
+                            transition:0.2s;
+
+                            &.check{
                             animation: err 1.5s infinite;
+                            border: 1px solid #24e675;
+                            }
+                        }
+                        .unCheck:hover{
+                            background: #24e67514;
                         }
 
                         @keyframes err{

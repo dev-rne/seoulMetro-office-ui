@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
+    "@ramonak/react-progress-bar": "^5.0.0",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-less": "^1.0.1",
     "antd": "^4.19.5",

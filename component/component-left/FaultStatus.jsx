@@ -5,7 +5,7 @@ import {useState} from 'react'
 
 const FalutStatus = observer(() => {
 
-  const modalStore = useStore().Modal;
+  const store = useStore().Main;
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const showModal = () => {
@@ -23,33 +23,27 @@ const FalutStatus = observer(() => {
           <span>Fault Status</span>
         </div>
         <div className="status-box">
-          <div className="status" onClick={showModal}>
+          <div className="status">
+            <div className="label">전체</div>
+            <div className="data total">
+              80
+            </div>
+          </div>
+          <div className="status">
             <div className="label">정상</div>
             <div className="data normal">
-              {modalStore.faultStatusData.normal}
+            {80 - store.anomaly?.length}
             </div>
           </div>
-          <div className="status" onClick={showModal}>
+          <div className="status">
             <div className="label">이상</div>
-            <div className="data warn">
-            {modalStore.faultStatusData.warn}
-            </div>
-          </div>
-          <div className="status" onClick={showModal}>
-            <div className="label">고장</div>
             <div className="data critical">
-            {modalStore.faultStatusData.critical}
+            {store.anomaly?.length}
             </div>
           </div>
-          <div className="status" onClick={showModal}>
-            <div className="label">7일예측</div>
-            <div className="data sevenDays">
-              {modalStore.faultStatusData.sevenDays}
-              </div>
-          </div>
-        <Modal footer={null} visible={isModalVisible} onCancel={handleCancel}  maskStyle={{display:"none"}}>
+        {/* <Modal footer={null} visible={isModalVisible} onCancel={handleCancel}  maskStyle={{display:"none"}}>
           <span>Modal Data</span>
-        </Modal>
+        </Modal> */}
         </div>
      
         <style jsx>
@@ -77,66 +71,55 @@ const FalutStatus = observer(() => {
             flex:1;
 
             .status{
-              width:25%;
+              width:calc(100% / 3);
               display:flex;
               flex-direction:column;
               align-items:center;
               justify-content:center;
               height:100%;
-              gap:16px;
+              gap:20px;
               position:relative;
                 
               .label{
-                color:#c7dae2;
+                color:#c7cdcf;
                 font-size:16px;
                 font-weight:600;
-                opacity:0.5;
+                opacity:1;
                 transition:0.25s;
                 
               }
               .data{
-                font-size:4em;
-                font-weight:600;
+                font-size:4.5em;
+                font-weight:700;
                 line-height:50px;
-                margin-bottom:10px;
-                opacity:0.5;
+                margin-bottom:16px;
+                opacity:1;
                 transition:0.25s;
 
-                &.normal{ 
-                  color:#10a7fe;
+                &.total{ 
+                  color:#999999;
                 }
-                &.warn{
-                  color:#fefa10;
+                &.normal{
+                  color:#41e678;
                 }
                 &.critical{
-                  color:#fa7132;
-                }
-                &.sevenDays{
-                  color:#57e6ff;
+                  color:#f76552;
                 }
               }
             }
-              .status:hover .label{
-                opacity:1;
-                cursor: pointer;
-              }
-              .status:hover .data{
-                opacity:1;
-                cursor: pointer;
-              }
-              .status::after{
-                content:"";
-                position:absolute;
-                top:50%;
-                right:0;
-                width:1px;
-                background:rgba(255,255,255,0.1);
-                height:40%;
-                transform: translateY(-30%)
-              }
-              .status:last-child::after{
-                width:0
-              }
+            .status::after{
+              content:"";
+              position:absolute;
+              top:50%;
+              right:0;
+              width:1px;
+              background:rgba(255,255,255,0.1);
+              height:40%;
+              transform: translateY(-30%)
+            }
+            .status:last-child::after{
+              width:0;
+            }
            }
          }
          `}

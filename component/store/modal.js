@@ -8,7 +8,6 @@ const Main = observable({
             this.faultStatusData = res.data.data;
         });
     }
-   
 })
 
 export default Main;

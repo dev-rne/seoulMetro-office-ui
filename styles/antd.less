@@ -72,3 +72,48 @@
     justify-content: center;
   }
 }
+
+.ant-modal-wrap{
+  overflow: hidden;
+
+  .ant-modal{
+    &.bearingModal{
+      top: 20%;
+      left: 57%;
+      height: 75vh;
+      width: 40% !important;
+      border: 1px solid #0AA4DE;
+      border-radius: 10px;
+      background: rgba(0,0,0,0.6);
+      margin: 0;
+      padding-bottom: 0;
+      transform-origin: 50% 50% !important;
+      .ant-modal-content{
+        background: rgba(0,0,0,0);
+        height: 100%;
+        .ant-modal-body{
+          height: 100%;
+        }
+      }
+    }
+  }
+}
+
+.ant-modal-body{
+  padding: 16px;
+}
+
+
+.@{empty-prefix-cls} {
+  margin: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: rgba(255, 255, 255, 0.685);
+
+  &-normal {
+    margin:0;
+   }
+}
