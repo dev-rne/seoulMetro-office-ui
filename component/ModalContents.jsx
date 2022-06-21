@@ -4,82 +4,114 @@ import { Progress, Tooltip } from 'antd';
 import ModalLineChart from 'component/chart/ModalLineChart';
 import BoxFrameSmall from './BoxFrameSmall';
 import {useState, useEffect} from 'react';
+import { QuestionCircleOutlined} from '@ant-design/icons';
+import modalQuestion from 'public/data/modalQuestion.json'
 
-const ModalContents = observer(({bearing}) => {
+const ModalContents = observer(({bearing, isModalVisible}) => {
     const store = useStore().Main;
+    const modal = useStore().Modal;
 
-    const [chartData, setChartData] = useState(resetData);
     const [status, setStatus] = useState(false);
-    const [progress,setProgress] = useState([])
+    const [progress,setProgress] = useState([]);
 
-    const resetData = [
+    const resetPeriod = {
+        rms:{
+            lastWeek: true,
+            month:false,
+            threeMonth:false
+            },
+        peak_to_peak:{
+            lastWeek: true,
+            month:false,
+            threeMonth:false
+            },
+        kurtosis:{
+            lastWeek: true,
+            month:false,
+            threeMonth:false
+            },
+        crest_factor:{
+            lastWeek: true,
+            month:false,
+            threeMonth:false
+            },
+        shape_factor:{
+            lastWeek: true,
+            month:false,
+            threeMonth:false
+            },
+        temperature:{
+            lastWeek: true,
+            month:false,
+            threeMonth:false
+            }}
+
+    const [period, setPeriod] = useState(resetPeriod)
+
+    useEffect(() => {
+        if(modal.statusData === []) return;
+        setStatus(modal.statusData.anomaly_detected);
+        let dataArr = []
+        for(let key in modal.statusData){
+            if(key !== "anomaly_detected")dataArr.push(modal.statusData[key])
+        }
+        setProgress(dataArr)
+    },[modal.statusData])
+
+    useEffect(() => {
+        setPeriod(resetPeriod)
+    },[isModalVisible])
+
+    const chartData = [
         {
             title: "RMS",
-            data: [],
-            threshold: 0
+            data: modal.modalRms,
+            threshold: modal.rmsThreshold,
+            code: "rms"
         },
         {
             title: "Peak to peak",
-            data: [],
-            threshold: 0
+            data:  modal.modalPeakToPeak,
+            threshold:  modal.peakToPeakThreshold,
+            code: "peak_to_peak"
         },
         {
-            title: "Kurtosis",
-            data: [],
-            threshold: 0
+            title: "첨도",
+            data:  modal.modalKurtosis,
+            threshold:  modal.kurtosisThreshold,
+            code: "kurtosis"
         },
         {
-            title: "Crest factor",
-            data: [],
-            threshold: 0
+            title: "파고율",
+            data:  modal.modalCrestFactor,
+            threshold:  modal.crestFactorThreshold,
+            code: "crest_factor"
         },
         {
-            title: "Shape factor",
-            data: [],
-            threshold: 0
+            title: "형태 인자",
+            data:  modal.modalShapeFactor,
+            threshold: modal.shapeFactorThreshold,
+            code: "shape_factor"
         },
         {
-            title: "Temperature",
-            data: [],
-            threshold: 0
+            title: "온도",
+            data:  modal.modalTemperature,
+            threshold:  modal.temperatureThreshold,
+            code: "temperature"
         },
     ]
 
-    useEffect(() => {
-        if(store.totalData === []) return;
-        let dataArr = resetData;
-        let data = store.totalData
 
-        for(let i = 0; i < store.totalData.rms?.acq_time.length; i++){
-            dataArr[0].data.push([data.rms.acq_time[i], data.rms.value[i]])
-            dataArr[1].data.push([data.peak_to_peak.acq_time[i], data.peak_to_peak.value[i]])
-            dataArr[2].data.push([data.kurtosis.acq_time[i], data.kurtosis.value[i]])
-            dataArr[3].data.push([data.crest_factor.acq_time[i], data.crest_factor.value[i]])
-            dataArr[4].data.push([data.shape_factor.acq_time[i], data.shape_factor.value[i]])
-        }
-        for(let i = 0; i < data.temperature?.acq_time.length; i++){
-            dataArr[5].data.push([data.temperature.acq_time[i], data.temperature.value[i]])
-        }
-            dataArr[0].threshold =  data.rms?.threshold;
-            dataArr[1].threshold = data.peak_to_peak?.threshold;
-            dataArr[2].threshold =  data.kurtosis?.threshold;
-            dataArr[3].threshold =  data.crest_factor?.threshold;
-            dataArr[4].threshold =  data.shape_factor?.threshold;
-            dataArr[5].threshold =  data.temperature?.threshold;
-        setChartData(dataArr);
-    },[store.totalData])
+    const clickThePeriod = (date, category) => {
+        modal.callPeriodChartData({date ,category })
+        let data = {...period}
 
-    
-
-    useEffect(() => {
-        if(store.statusData === []) return;
-        setStatus(store.statusData.anomaly_detected);
-        let dataArr = []
-        for(let key in store.statusData){
-            if(key !== "anomaly_detected")dataArr.push(store.statusData[key])
-        }
-        setProgress(dataArr)
-    },[store.statusData])
+        data[category].lastWeek = false
+        data[category].month = false
+        data[category].threeMonth = false
+        data[category][date] = true;
+        setPeriod(data)
+    }
 
   
     return(
@@ -93,7 +125,7 @@ const ModalContents = observer(({bearing}) => {
                 <div className="bearing-status">
                     <div className="title">
                         <img src={require('../assets/circle.svg')} />
-                        <span>Bearing Status</span>
+                        <span>베어링 상태</span>
                     </div>
                     <div className={status ? "err status" : "status"}>
                         <span className={status ? "err" : ""}>{status ? "고장" : "정상"}</span>
@@ -101,13 +133,19 @@ const ModalContents = observer(({bearing}) => {
                 </div>
 
                 <div className="progress-box">
-                    <div className="title">Maximum feature data per day</div>
+                    <div className="title-box">
+                        <div className="title">특성인자 현재 상태 비율</div>
+                        <div className="question">
+         <Tooltip placement="topRight" color="#0776d1da" overlayClassName="questionTooltip" trigger="click" title={modalQuestion.data.filter(data => "statusPercent" === data.code)[0].label}>
+          <QuestionCircleOutlined className="icon"/></Tooltip>
+         </div>
+                    </div>
                     <div className="chart-box">
                     {progress.map((list,i) => 
-                     <Tooltip placement="top" title={title({ value:Number(list.data).toFixed(5), threshold:list.threshold, title:list.title})} key={i} color="#108ee9">
+                     <Tooltip placement="top" title={title({ value:Number(list.data).toFixed(0), threshold:list.threshold, title:list.title})} key={i} color={Number(list.data).toFixed(0) >= 100 ? "#d62809ea" : "#0056f7da"}>
                        <div className="chart">
-                         <Progress percent={((list.data.toFixed(2) / list.threshold) * 100).toFixed(1)} showInfo={false} className="progress" strokeLinecap="square" strokeColor={list.data > list.threshold ? "#e91010" : "#108ee9"}/>
-                         <div className="label">{((list.data.toFixed(2) / list.threshold) * 100).toFixed(1)}%</div>
+                         <Progress percent={Number(list.data).toFixed(0)} showInfo={false} className="progress" strokeLinecap="square" strokeColor={Number(list.data).toFixed(0) >= 100 ? {from: '#c41508ee',to: '#ff4343'} :{from: '#003adb',to: '#1f78cc'}}/>
+                         <div className="label"><div className={Number(list.data).toFixed(0) >= 100 ? "num err": 'num'}>{i+1}</div>{Number(list.data).toFixed(0)}%</div>
                        </div></Tooltip>
                         )}
                     </div>
@@ -119,9 +157,27 @@ const ModalContents = observer(({bearing}) => {
                     return(
                         <div className="charts" key={i}>
                             <BoxFrameSmall />
-                            <div className="title">{list.title}</div>
+                            <div className="title-box">
+                                <div className="title">
+                                <div className='num'>{ i + 1 }</div>{list.title}</div>
+                                <div className="select-box">
+                                    <div className="period">
+                                        <div className={period[list.code].lastWeek ? "btn selectBtn" : "btn"} onClick={() =>
+                                            clickThePeriod("lastWeek", list.code)}>1주일</div>
+                                        <div className={period[list.code].month ? "btn selectBtn" : "btn"} onClick={() =>
+                                            clickThePeriod("month", list.code)}>1달</div>
+                                        <div className={period[list.code].threeMonth ? "btn selectBtn" : "btn"} onClick={() =>
+                                            clickThePeriod("threeMonth", list.code)}>3달</div>
+                                    </div>
+                                    <Tooltip placement={(i)%2 === 0 ? "top" : "topRight"} color="#0776d1da" overlayClassName="questionTooltip" trigger="click" title={modalQuestion.data.filter(data => list.code === data.code)[0].label}>
+                                    <QuestionCircleOutlined className="icon"/></Tooltip>
+                                </div>
+                            </div>
                             <div className="content">
-                                <ModalLineChart data={list.data} threshold={list.threshold} title={list.title}/></div>
+                           
+                                <ModalLineChart data={list.data} threshold={list.threshold} title={list.title}/>
+                            
+                            </div>
                         </div>
                     )
                 })}
@@ -139,7 +195,7 @@ const title = ({value, threshold, title}) => {
                 {title}
             </div>
             <span>
-                값: {value}
+                값: {value}% /
             </span>
             <span>
                 임계치: {threshold}
@@ -152,7 +208,7 @@ const title = ({value, threshold, title}) => {
                         line-height:15px;
                         font-weight:600
                     }
-                span{
+                span {
                 font-size: 12px;
                     margin-right: 4px;
                 }

@@ -1,14 +1,14 @@
-import FalutProbabilityChart from '../chart/FaultProbabilityChart';
+import { QuestionCircleOutlined} from '@ant-design/icons';
+import { Tooltip } from 'antd';
 import { observer } from 'mobx-react';
 import useStore from 'component/store/store.js';
 import {useEffect, useState} from 'react';
+import modalQuestion from 'public/data/modalQuestion.json'
 import { Empty } from 'antd';
 
 const FalutProbability = observer(() => {
-
-  
   const store = useStore().Main;
-  const [select,setSelect] = useState(0)
+  const [select,setSelect] = useState(null)
 
   const clickTheLocation = ({carriage_number, idx, location}) => {
     setSelect(idx)
@@ -16,11 +16,31 @@ const FalutProbability = observer(() => {
     store.setLocation(location)
   }
 
+  useEffect(() => {
+    if(store.anomaly.length === 0) return;
+    let unselected = store.anomaly.filter(list => list.carriage_number === store.selectTrain.key);
+    if(unselected.length === 0) {
+      setSelect(null);
+      store.setLocation("")
+      store.resetRms();
+    }else{
+      clickTheLocation({carriage_number:unselected[0].carriage_number,
+         idx:store.anomaly.findIndex(list => list.bearing_number === unselected[0].bearing_number), 
+         location:unselected[0].bearing_location})
+    }
+  },[store.selectTrain])
+
   return (
       <div className="box">
-        <div className="title">
-          <img src={require('../../assets/circle.svg')} />
-          <span>Anomaly bearing location</span>
+        <div className="title-box">
+         <div className="title">
+         <img src={require('../../assets/circle.svg')} />
+          <span>이상 베어링 위치</span>
+         </div>
+         <div className="question">
+         <Tooltip placement="top" color="#0776d1da" overlayClassName="questionTooltip" trigger="click" title={modalQuestion.data.filter(data => "location" === data.code)[0].label}>
+          <QuestionCircleOutlined className="icon"/></Tooltip>
+         </div>
         </div>
         <div className="table">
             <div className="thead">
@@ -37,7 +57,7 @@ const FalutProbability = observer(() => {
                     <div className="td">{list.carriage_number}호차</div>
                   </div>
                 )
-              }) : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />}
+              }) : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="이상베어링 없음" />}
             </div>
         </div>
         <style jsx>
@@ -49,6 +69,12 @@ const FalutProbability = observer(() => {
           height:100%;
           gap:10px;
 
+          .title-box{
+            display: flex;
+            width: 100%;
+            align-items: center;
+            justify-content: space-between;
+            padding: 2px 4px;
            .title {
             width:100%;
             display:flex;
@@ -58,6 +84,18 @@ const FalutProbability = observer(() => {
             font-weight:500;
             align-items:center;
            }
+           .question{
+            z-index:1;
+            color: #0579ff;
+              cursor: pointer;
+              transition: 0.25s;
+              z-index: 1;
+              font-size:16px;
+           }
+            .question:hover{
+                color: white;
+            }
+          }
            .table {
             flex:1;
             display:flex;

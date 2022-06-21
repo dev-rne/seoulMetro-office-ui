@@ -8,15 +8,18 @@ import ModalContents from './ModalContents';
 
 const MainDashboard = observer(() => {
   const mainStore = useStore().Main;
+  const modalStore = useStore().Modal;
 
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [bearing, setBearing] = useState(0);
 
   const showModal = (idx) => {
     setIsModalVisible(true);
-    setBearing(idx)
-    mainStore.callTotalChart(`${mainStore.selectTrain.key}-${idx+1}`)
-    mainStore.callModalStatus(`${mainStore.selectTrain.key}-${idx+1}`)
+    setBearing(idx);
+    modalStore.selectLocation = `${mainStore.selectTrain.key}-${idx+1}`;
+
+    modalStore.callTotalChart("lastWeek")
+    modalStore.callModalStatus(`${mainStore.selectTrain.key}-${idx+1}`)
   };
 
   const handleCancel = () => {
@@ -37,6 +40,7 @@ const MainDashboard = observer(() => {
     setBearingStatus(dataArr);
   },[mainStore.selectTrain])
 
+
   return (
       <div className="center-box">
            <img src={require('../assets/center-bg.png')} alt="" />
@@ -48,7 +52,7 @@ const MainDashboard = observer(() => {
              })}
            </div>
            <Modal visible={isModalVisible} onCancel={handleCancel} footer={null} className="bearingModal">
-              <ModalContents bearing={bearing}/>
+              <ModalContents bearing={bearing} isModalVisible={isModalVisible}/>
             </Modal>
            <BoxFrame/>
         <style jsx>

@@ -1,18 +1,17 @@
 import { observable, runInAction } from 'mobx';
 import axios from 'axios';
-import {config} from 'config.js'
+
+const apiKey = process.env.NEXT_PUBLIC_AXIOS_URL
 
 const Main = observable({
     trainList:[],
     selectTrain:[],
     selectTrainStatus:[],
-    eventData:[],
-    showModal:false,
+    eventData: [],
+    showModal: false,
     anomaly: [],
     location:"",
     rms:[],
-    totalData:[],
-    statusData:[],
     showList(value){
         this.trainList = value;
         this.selectTrain = value.train[0]
@@ -37,15 +36,15 @@ const Main = observable({
     },
     async callAnomaly(){
        
-        await axios.get(`${config.api}/api/rule/carriage-info`).then(response => {
+        await axios.get(`${apiKey}/api/rule/carriage-info`).then(response => {
            runInAction(() => {
             this.anomaly = response.data;
-            this.location = response.data[0]?.bearing_location
+            // this.location = response.data[0]?.bearing_location
            })
         });
     },
-    callRms(location){
-        axios.get(`${config.api}/api/rule/data-feature?category=rms&bearingLocation=${location}
+    callRms({location, date}){
+        axios.get(`${apiKey}/api/rule/data-feature?category=rms&bearingLocation=${location}&startDate=${date}
         `).then(response => {
             runInAction(() => {
                 this.rms = response.data;
@@ -55,22 +54,9 @@ const Main = observable({
     setLocation(location){
         this.location = location
     },
-    callTotalChart(location){
-        axios.get(`${config.api}/api/rule/data-feature?bearingLocation=${location}
-        `).then(response => {
-            runInAction(() => {
-                this.totalData = response.data;
-            })
-        });
-    },
-    callModalStatus(location){
-        axios.get(`${config.api}/api/rule/data-diagnosis?bearingLocation=${location}
-        `).then(response => {
-            runInAction(() => {
-                this.statusData = response.data;
-            })
-        });
-    },
+    resetRms(){
+        this.rms = []
+    }
 })
 
 export default Main;

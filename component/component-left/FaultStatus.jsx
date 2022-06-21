@@ -1,26 +1,28 @@
 import useStore from 'component/store/store.js';
 import { observer } from 'mobx-react';
 import { Modal } from 'antd';
-import {useState} from 'react'
+import {useState} from 'react';
+import { Tooltip } from 'antd';
+import modalQuestion from 'public/data/modalQuestion.json';
+import { QuestionCircleOutlined} from '@ant-design/icons';
 
 const FalutStatus = observer(() => {
 
   const store = useStore().Main;
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
-
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
-
   return (
       <div className="box">
+        
+        <div className="title-box">
         <div className="title">
           <img src={require('../../assets/circle.svg')} />
-          <span>Fault Status</span>
+          <span>베어링 상태</span>
+        </div>
+         <div className="question">
+         <Tooltip placement="top" color="#0776d1da" overlayClassName="questionTooltip" trigger="click" title={modalQuestion.data.filter(data => "status" === data.code)[0].label}>
+          <QuestionCircleOutlined className="icon"/></Tooltip>
+         </div>
         </div>
         <div className="status-box">
           <div className="status">
@@ -41,9 +43,6 @@ const FalutStatus = observer(() => {
             {store.anomaly?.length}
             </div>
           </div>
-        {/* <Modal footer={null} visible={isModalVisible} onCancel={handleCancel}  maskStyle={{display:"none"}}>
-          <span>Modal Data</span>
-        </Modal> */}
         </div>
      
         <style jsx>
@@ -53,8 +52,13 @@ const FalutStatus = observer(() => {
            display:flex;
            flex-direction:column;
            height:100%;
-
-           .title{
+           .title-box{
+            display: flex;
+            width: 100%;
+            align-items: center;
+            justify-content: space-between;
+            padding: 2px 4px;
+           .title {
             width:100%;
             display:flex;
             gap:6px;
@@ -63,6 +67,18 @@ const FalutStatus = observer(() => {
             font-weight:500;
             align-items:center;
            }
+           .question{
+            z-index:1;
+            color: #0579ff;
+              cursor: pointer;
+              transition: 0.25s;
+              z-index: 1;
+              font-size:16px;
+           }
+            .question:hover{
+                color: white;
+            }
+          }
 
            .status-box{
             width:100%;

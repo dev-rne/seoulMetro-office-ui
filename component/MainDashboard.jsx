@@ -17,7 +17,7 @@ const MainDashboard = observer(() => {
     useEffect(()=>{
       if(mainStore.anomaly.length === 0) return;
        if(mainStore.location !== ""){
-        mainStore.callRms(mainStore.location)
+        mainStore.callRms({location:mainStore.location,date:"lastWeek"})
        }
     },[mainStore.location])
 

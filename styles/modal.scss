@@ -16,11 +16,10 @@
         width:100%;
         display:flex;
         gap:10px;
-        height: 15%;
-        margin-bottom: 10px;
+        height: 20%;
 
         .bearing-status{
-            width:20%;
+            width:17%;
             display:flex;
             flex-direction:column;
             gap:8px;
@@ -56,7 +55,7 @@
                     color: #5ed694;
 
                     &.err{
-                        color: #ec4949;
+                        color: #f06161;
                     }
                 }
             }
@@ -66,41 +65,71 @@
             display:flex;
             flex-direction:column;
             flex:1;
+            height: 100%;
 
-            .title{
-                background:#103b52;
-                padding: 2px 8px
-            }
+          
+            .title-box{
+                display: flex;
+                width: 100%;
+                align-items: center;
+                justify-content: space-between;
+                padding: 2px 8px;
+                background:#093c77b0;
+
+               .title {
+                width:100%;
+                display:flex;
+                gap:6px;
+                color:white;
+                font-size:15px;
+                font-weight:500;
+                align-items:center;
+               }
+               .question{
+                z-index:1;
+                color: #3794ff;
+                  cursor: pointer;
+                  transition: 0.25s;
+                  z-index: 1;
+                  font-size:16px;
+               }
+                .question:hover{
+                    color: white;
+                }
+              }
             
             .chart-box{
                 border:1px solid #102b3a;
                 padding:10px;
-                height:72px;
+                height:100%;
                 display: flex;
                 gap: 10px;
-
-                
 
 
                .chart{
                    width: calc((100% / 6) - 10px);
                    display: flex;
                    position: relative;
-                  
-                .progress{
+                   
+                   .progress{
+                    align-items: flex-end;
                     width: 100%;
                     display: flex;
                     justify-content: center;
-                    align-items: center;
+                    height: 100%;
                     
                     .ant-progress-outer{
                         transform: rotate(-90deg);
-                        width:50px;
-                        height: 120%;
+                        width:55px;
+                        height: 60%;
                         display:flex;
                         margin: 0;
+                        margin-bottom: 2px;
+                        border-radius: 4px;
+                        overflow: hidden;
                         .ant-progress-inner{
                             border-radius: 0;
+                            background-color: rgba(68, 97, 165, 0.342);
                             .ant-progress-bg{
                                  height:100% !important;
                              }
@@ -110,11 +139,28 @@
 
                 .label{
                     position: absolute;
-                    top: 30%;
+                    top: 8%;
                     left: 50%;
                     transform: translate(-50%,-50%);
                     font-size: 12px;
                     z-index: 10;
+                    display: flex;
+                    gap: 6px;
+                    align-items: center;
+
+                    .num{
+                        width: 16px;
+                        height: 16px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background: #004edf;
+                        font-size: 12px;
+
+                        &.err{
+                            background: #d62000;
+                        }
+                    }
                 }
                }
             }
@@ -126,7 +172,7 @@
         display: flex;
         gap: 10px;
         flex-wrap: wrap;
-        height: 80%;
+        height: 83%;
         .charts{
             width: calc(50% - 5px);
             height: calc((100% / 3) - 10px);
@@ -134,12 +180,69 @@
             border: 1px solid #142E4B;
             display: flex;
             flex-direction: column;
-            .title{
-                background: #142E4B;
-                padding: 2px 10px;
-                color: #c1e4ff;
-                font-size: 15px;
-                font-weight: 500;
+            .title-box{
+                display: flex;
+                width: 100%;
+                background: #093c77b0;
+                align-items: center;
+                justify-content: space-between;
+                padding: 2px 6px;
+                .title{
+                    color: #dfe8f3;
+                    font-size: 15px;
+                    font-weight: 400;
+                    display: flex;
+                    gap: 10px;
+                    align-items: center;
+                    .num{
+                        width: 20px;
+                        height: 20px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background: #004ec4;
+                        box-shadow: 0 0 3px rgba(0,0,0,0.1);
+                    }
+                }
+                .select-box{
+                    display: flex;
+                    gap: 8px;
+                    align-items: center;
+                    .period{
+                        display: flex;
+                        align-items: center;
+                        gap: 4px;
+                        .btn{
+                            z-index: 1;
+                            font-size:10px;
+                            font-weight:500;
+                            padding:2px 6px;
+                            cursor: pointer;
+                            background: #23576e80;
+                            border-radius: 2px;
+                            transition: 0.25s;
+                            border: 1px solid #06124665;
+                            &.selectBtn{
+                                border: 1px solid #fdfeff96;
+                                background: #157afd91;
+                            }
+                        }
+                        .btn:hover{
+                            background: #157afd91;
+                        }
+                    }
+
+                    .icon{
+                        cursor: pointer;
+                        transition: 0.25s;
+                        z-index: 1;
+                        font-size:16px;
+                        color: #258bff;
+                    }
+                    .icon:hover{
+                        color: white
+                    }
+                }
             }
             .content{
                 background: #02223b98;

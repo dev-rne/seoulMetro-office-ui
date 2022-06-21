@@ -137,11 +137,11 @@ const ModalLineChart = ({data}) => {
 
     return (
         <>
-     {data.length !== 0 ? <ReactECharts
+     { data.length === 0 ? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE}description="이상베어링 위치에서 베어링을 클릭하세요" />  : data.rms.value.length === 0 ? <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="데이터가 없습니다." /> : <ReactECharts
             option={options}
             className="line"
             style={{ width: "100%", height: "100%" }}
-        /> : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />}
+        />}
     </>
     );
 };

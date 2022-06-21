@@ -33,7 +33,7 @@ const ModalLineChart = ({data, threshold, title}) => {
             show: false,
         },
         grid: {
-            top: "5%",
+            top: "10%",
             left: "1%",
             right:"2%",
             bottom: "1%",
@@ -90,7 +90,7 @@ const ModalLineChart = ({data, threshold, title}) => {
 
     useEffect(() => {
         if(!data) return;
-        setOptions({...options, series: [
+        let seriesData = [
             {
               name:title,
               type: 'line',
@@ -118,24 +118,52 @@ const ModalLineChart = ({data, threshold, title}) => {
                     }
                   ])
               },
-              markLine: {
-                  data: [{type: 'average', yAxis:threshold}],
-                  label:{
-                      show:false,
-                  },
-                  symbolSize: 4,
-                        lineStyle:{
-                            color: "#ee6c44"
-                      },
-                  emphasis:{
-                      lineStyle:{
-                          width:2
-                      }
-                  }
-                },
               data: data
             }
-          ]})
+          ]
+
+          let dataArr = [];
+          for(let i = 0; i < data.length; i++){
+            dataArr.push([data[i][0], threshold])
+          }
+
+          seriesData.push(
+            {
+                type: 'line',
+                symbol:'none',
+                lineStyle:{
+                    color: "rgba(0,0,0,0)",
+                },
+                markLine: {
+                    data: [{type: 'average', yAxis:threshold}],
+                    label:{
+                        show:false,
+                    },
+                    symbolSize: 4,
+                    lineStyle:{
+                        color: "#bb2c08",
+                        width:1
+                    },
+                    emphasis:{
+                        lineStyle:{
+                            width:2
+                        },
+                        label:{
+                            show:true,
+                            position: "insideMiddleBottom",
+                            fontSize:10,
+                            borderWidth:0,
+                            backgroundColor:"#bb2c08",
+                            color:"white",
+                            padding:[2,4],
+                            distance: -10
+                        }
+                    }
+                  },
+                data: dataArr
+              }
+          )
+        setOptions({...options, series: seriesData })
     },[data])
 
     return (<>
@@ -143,7 +171,7 @@ const ModalLineChart = ({data, threshold, title}) => {
             option={options}
             className="line"
             style={{ width: "100%", height: "100%" }}
-        /> : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />}
+        /> : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="데이터 없음" />}
     </>
       
     );
