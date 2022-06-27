@@ -17,10 +17,13 @@ const MainDashboard = observer(() => {
     setIsModalVisible(true);
     setBearing(idx);
     modalStore.selectLocation = `${mainStore.selectTrain.key}-${idx+1}`;
-
+    
     modalStore.callTotalChart("lastWeek")
     modalStore.callModalStatus(`${mainStore.selectTrain.key}-${idx+1}`)
   };
+
+  useEffect(() => {
+  },[isModalVisible])
 
   const handleCancel = () => {
     setIsModalVisible(false);
@@ -50,9 +53,9 @@ const MainDashboard = observer(() => {
                  <img src={list.err ? require('../assets/baring-err.png') : require('../assets/baring.png')} className={list.err ? `baring${i + 1} baring err` : `baring${i + 1} baring`} key={`img${i}`} onClick={mainStore.selectTrain.key !== 9 ? () => showModal(i) : () => showModal(bearingStatus.length - (i + 1))}/> 
                )
              })}
-           </div>
-           <Modal visible={isModalVisible} onCancel={handleCancel} footer={null} className="bearingModal">
-              <ModalContents bearing={bearing} isModalVisible={isModalVisible}/>
+            </div>
+            <Modal visible={isModalVisible} onCancel={handleCancel} footer={null} className="bearingModal">
+              <ModalContents bearing={bearing} visible={() => isModalVisible} />
             </Modal>
            <BoxFrame/>
         <style jsx>

@@ -46,7 +46,7 @@ export default function TopComp(){
                     }
                     .title{
                         z-index:1;
-                        font-size:22px;
+                        font-size:20px;
                         font-weight:700;
                         width:50%;
                         text-align:center;

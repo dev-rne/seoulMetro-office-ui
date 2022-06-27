@@ -21,6 +21,7 @@ const Main = observable({
     selectLocation : "",
     callTotalData:0,
     callObjectData:0,
+    csvData:[],
     callFaultStatusData(){
         axios.get('./data/faultStatus.json').then(res => {
             this.faultStatusData = res.data.data;
@@ -50,6 +51,14 @@ const Main = observable({
                     this.temperatureThreshold =  data.temperature?.threshold;
             })
             this.callTotalData++
+        });
+    },
+    callCsvData(date){
+        axios.get(`${apiKey}/api/rule/data-feature?bearingLocation=${this.selectLocation}&startDate=${date}
+        `).then(response => {
+            runInAction(() => {
+               this.csvData = response.data;
+            })
         });
     },
     callModalStatus(location){

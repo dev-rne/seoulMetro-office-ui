@@ -96,7 +96,7 @@ const ModalLineChart = ({data, threshold, title}) => {
               type: 'line',
               stack: false,                
               symbol:'circle',
-              symbolSize:3,
+              symbolSize:2,
               smooth:true,
               lineStyle:{
                   color: "#1b98ff",

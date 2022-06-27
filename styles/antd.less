@@ -1,6 +1,6 @@
 @import '~antd/dist/antd.dark.less'; // Introduce the official dark less style entry file
 
-@primary-color: #c02428;
+@primary-color: #138dff;
 
 .@{popover-prefix-cls} {
     &-inner {
@@ -51,6 +51,28 @@
   }
 }
 
+.select-selector() {
+  border: 1px solid #157afd91;
+  border-radius: 20px;
+}
+.@{select-prefix-cls} {
+  &-dropdown {
+  background: #0c182bd5;
+
+  }
+
+    &-item {
+      &-option {
+        &-active:not(&-disabled) {
+          background: #0f3e7aa6;
+        }
+        &-selected:not(&-disabled) {
+          background: #0c5ee2da !important;
+        }
+       
+    }
+  }
+}
 
 .@{drawer-prefix-cls} {
   &-content{
@@ -123,6 +145,17 @@
     &-inner {
       text-align: center;
       font-size:13px;
+      margin: 0 8px;
+    }
+  }  
+}
+.questionTooltipRight{
+  left:83.5% !important;
+  .@{tooltip-prefix-cls} {
+    &-inner {
+      text-align: center;
+      margin-left: 16px;
+      font-size:13px;
     }
   }  
 }
@@ -130,3 +163,4 @@
 .@{empty-prefix-cls} {
   font-size:12px
 }
+

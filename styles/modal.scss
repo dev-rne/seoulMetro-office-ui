@@ -30,9 +30,10 @@
                 display:flex;
                 gap:6px;
                 color:white;
-                font-size:16px;
+                font-size:14px;
                 font-weight:500;
                 align-items:center;
+                white-space:nowrap ;
             }
 
             .status{
@@ -81,21 +82,22 @@
                 display:flex;
                 gap:6px;
                 color:white;
-                font-size:15px;
+                font-size:14px;
                 font-weight:500;
                 align-items:center;
                }
                .question{
-                z-index:1;
-                color: #3794ff;
-                  cursor: pointer;
-                  transition: 0.25s;
-                  z-index: 1;
-                  font-size:16px;
+                cursor: pointer;
+                z-index: 1;
+                .icon{
+                    font-size:16px;
+                    transition: 0.25s;
+                      color: #3794ff;
+                  }
+                  .icon:hover{
+                      color: white;
+                  }
                }
-                .question:hover{
-                    color: white;
-                }
               }
             
             .chart-box{
@@ -251,11 +253,75 @@
             }
         }
     }
+
+    .download-box{
+        display: flex;
+        justify-content: end;
+        gap: 10px;
+        align-items: center;
+        
+        .label{
+            color: rgb(67, 131, 250);
+        }
+        .btn{
+            z-index: 1;
+            font-size:10px;
+            font-weight:500;
+            padding:2px 6px;
+            cursor: pointer;
+            background: #23576e80;
+            border-radius: 2px;
+            transition: 0.25s;
+            border: 1px solid #06124665;
+            &.selectBtn{
+                border: 1px solid #fdfeff96;
+                background: #157afd91;
+            }
+        }
+        .btn:hover{
+            background: #157afd91;
+        }
+        .downloadBtn{
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            padding: 4px 12px;
+            border-radius: 20px;
+            border: 1px solid #157afd91;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        .downloadBtn:hover{
+            background: #0047e0;
+        }
+    }
     .boxFrame{
         .box-edge{
             width: 8px !important;
             height: 8px !important;
             border-color: #5388a5 !important;
+        }
+    }
+
+   
+
+    .loading{
+        position:fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        z-index: 10;
+        background: rgba(0,0,0,0.5);
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        transition: 0.3s;
+        
+        &.unLoading{
+            display: none;
         }
     }
 }
