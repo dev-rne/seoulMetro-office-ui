@@ -22,7 +22,47 @@
     display: none;
   }
 }
+.bearingPop{
+  .@{popover-prefix-cls} {
+    &-inner {
+      background: rgba(117, 15, 20, 0.87);
+      border:1px solid rgb(209, 62, 51);
+      border-radius: 8px;
+      }
+      
+      &-content{
+        transform: translateY(-5px) !important;
+      }
 
+      &-inner-content {
+        padding: 8px 12px;
+        width: 100%;
+
+        span{
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space : nowrap;
+       }
+      }
+
+      &-arrow {
+        display: block;
+        transform: translate(-50%, 95%) !important;
+        z-index: 3;
+
+        &-content {
+          background: rgba(117, 15, 20, 0.87);
+          border:1px solid rgb(209, 62, 51);
+
+            &::before {
+                display:none;
+              }
+        }
+      }
+     
+}  
+
+}
 .progress-box{
   .@{progress-prefix-cls} {
     &-bg {

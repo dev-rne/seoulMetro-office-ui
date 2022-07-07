@@ -21,13 +21,13 @@ const ModalContents = observer(({bearing, visible}) => {
     const date = moment().format("YYYY-MM-DD")
 
     const label = [
-        {key:"acq_time",title:"일시"},
-        {key:"rms",title:"RMS"},
-        {key:"peak_to_peak",title:"Peak to peak"},
-        {key:"kurtosis",title:"첨도"},
-        {key:"crest_factor",title:"파고율"},
-        {key:"shape_factor",title:"형태 인자"},
-        {key:"temperature",title:"온도"}
+        {key:"acq_time",label:"일시"},
+        {key:"rms",label:"RMS"},
+        {key:"peak_to_peak",label:"Peak to peak"},
+        {key:"kurtosis",label:"첨도"},
+        {key:"crest_factor",label:"파고율"},
+        {key:"shape_factor",label:"형태 인자"},
+        {key:"temperature",label:"온도"}
     ]
 
     const resetPeriod = {
@@ -35,37 +35,43 @@ const ModalContents = observer(({bearing, visible}) => {
             today:false,
             lastWeek: true,
             month:false,
-            threeMonth:false
+            threeMonth:false,
+            year:false
             },
         peak_to_peak:{
             today:false,
             lastWeek: true,
             month:false,
-            threeMonth:false
+            threeMonth:false,
+            year:false
             },
         kurtosis:{
             today:false,
             lastWeek: true,
             month:false,
-            threeMonth:false
+            threeMonth:false,
+            year:false
             },
         crest_factor:{
             today:false,
             lastWeek: true,
             month:false,
-            threeMonth:false
+            threeMonth:false,
+            year:false
             },
         shape_factor:{
             today:false,
             lastWeek: true,
             month:false,
-            threeMonth:false
+            threeMonth:false,
+            year:false
             },
         temperature:{
             today:false,
             lastWeek: true,
             month:false,
-            threeMonth:false
+            threeMonth:false,
+            year:false
             }}
 
     const [period, setPeriod] = useState(resetPeriod)
@@ -135,6 +141,7 @@ const ModalContents = observer(({bearing, visible}) => {
         data[category].lastWeek = false
         data[category].month = false
         data[category].threeMonth = false
+        data[category].year = false
         data[category][date] = true;
         setPeriod(data)
     }
@@ -227,6 +234,8 @@ const ModalContents = observer(({bearing, visible}) => {
                                             clickThePeriod("month", list.code)}>1달</div>
                                         <div className={period[list.code].threeMonth ? "btn selectBtn" : "btn"} onClick={() =>
                                             clickThePeriod("threeMonth", list.code)}>3달</div>
+                                        <div className={period[list.code].year ? "btn selectBtn" : "btn"} onClick={() =>
+                                            clickThePeriod("year", list.code)}>1년</div>
                                     </div>
                                     <Tooltip placement={(i)%2 === 0 ? "top" : "topRight"} color="#0776d1da" overlayClassName={(i)%2 === 0 ? "questionTooltip" : "questionTooltipRight"} trigger="click" title={modalQuestion.data.filter(data => list.code === data.code)[0].label}>
                                     <QuestionCircleOutlined className="icon"/></Tooltip>
@@ -250,7 +259,8 @@ const ModalContents = observer(({bearing, visible}) => {
                         <Option value="month">
                         1달
                         </Option>
-                        <Option value="threeMonth">3달</Option>
+                        <Option value="threeMonth">3달</Option> 
+                        <Option value="year">1년</Option> 
                     </Select>
                     <div className="downloadBtn" onClick={downloadCSV}><DownloadOutlined />다운로드</div>
                     <CSVLink target="_blank"  filename={`${date}_bearing${modal.selectLocation}${csvPeriod}`} data={csvData} headers={label} className="hidden" ref={csvLink} />

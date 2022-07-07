@@ -1,0 +1,9 @@
+{
+    "loginInfo":[
+        {
+            "id": "admin",
+            "pw" : "admin",
+            "name": "admin"
+        }
+    ]
+}

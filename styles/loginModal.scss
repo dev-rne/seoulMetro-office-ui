@@ -1,0 +1,65 @@
+.sec_mask{
+    background-color: rgba(0,0,0,0.6);
+
+    .loginModal{
+        top:30%;
+        width: 400px !important;
+       
+        .ant-modal-content{
+            background: #111c29;
+            border-radius: 12px;
+            overflow: hidden;
+           
+    
+            .ant-modal-body{
+                padding:20px;
+                .login-box{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+                    align-items: center;
+
+                    .logo{
+                       margin-bottom: 10px;
+                    }
+
+                    .input-box{
+                        display: flex;
+                        flex-direction: column;
+                        gap: 10px;
+                        width: 100%;
+                        input{
+                            width: 100%;
+                            padding: 10px 20px;
+                            background: rgba(0, 0, 0, 0);
+                            border: none;
+                            border-bottom: 1px solid rgb(68, 87, 139);
+                        }
+                    }
+
+                    .login-btn{
+                        width: 100%;
+                        display: flex;
+                        padding: 10px;
+                        justify-content: center;
+                        align-items: center;
+                        border-radius: 20px;
+                        background: #0c75ff;
+                        cursor: pointer;
+                        font-weight: 600;
+                        transition: 0.25s;
+                        .icon{
+                            font-size: 18px;
+                            margin-left: 2px;
+                        }
+                    }
+                    .login-btn:hover{
+                        background: #015acf;
+                    }
+                }
+            }
+        }
+    }
+
+    
+}

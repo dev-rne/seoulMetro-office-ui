@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="397.207" height="230.563" viewBox="0 0 397.207 230.563">
+  <defs>
+    <radialGradient id="radial-gradient" cx="2.207" cy="0.193" r="1.53" gradientTransform="translate(-0.587) scale(2.173 1)" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ff3c2a"/>
+      <stop offset="0.173" stop-color="#ff3e2d"/>
+      <stop offset="0.314" stop-color="#ff4837"/>
+      <stop offset="0.443" stop-color="#ff5748"/>
+      <stop offset="0.565" stop-color="#ff6d60"/>
+      <stop offset="0.682" stop-color="#ff8a7f"/>
+      <stop offset="0.796" stop-color="#ffaca5"/>
+      <stop offset="0.904" stop-color="#ffd5d1"/>
+      <stop offset="1" stop-color="#fff"/>
+    </radialGradient>
+    <radialGradient id="radial-gradient-2" cx="-1.322" cy="0.193" r="1.53" xlink:href="#radial-gradient"/>
+    <radialGradient id="radial-gradient-3" cx="3.561" cy="-5.275" r="9.626" gradientTransform="translate(0.298) scale(0.404 1)" xlink:href="#radial-gradient"/>
+    <radialGradient id="radial-gradient-4" cx="2.474" cy="-5.275" r="9.624" gradientTransform="translate(0.298) scale(0.404 1)" xlink:href="#radial-gradient"/>
+    <radialGradient id="radial-gradient-5" cx="-1.609" cy="-5.275" r="9.626" gradientTransform="translate(0.298) scale(0.404 1)" xlink:href="#radial-gradient"/>
+    <radialGradient id="radial-gradient-6" cx="-2.696" cy="-5.275" r="9.626" gradientTransform="translate(0.298) scale(0.404 1)" xlink:href="#radial-gradient"/>
+    <radialGradient id="radial-gradient-7" cx="0.492" cy="0.356" r="0.839" gradientTransform="translate(0.21) scale(0.58 1)" xlink:href="#radial-gradient"/>
+  </defs>
+  <g id="그룹_14" data-name="그룹 14" transform="translate(-61.716 287.551)">
+    <path id="패스_12" data-name="패스 12" d="M186.784-227.539a2.355,2.355,0,0,0-2.353-2.354H130.975a2.353,2.353,0,0,0-2.354,2.352v124.06h58.163Zm-31.506,3.794v53.073A1.778,1.778,0,0,1,153.5-168.9H134.721a1.777,1.777,0,0,1-1.778-1.777v-53.073a1.778,1.778,0,0,1,1.778-1.778H153.5a1.778,1.778,0,0,1,1.778,1.778ZM180.4-168.9H161.618a1.777,1.777,0,0,1-1.778-1.777v-53.073a1.778,1.778,0,0,1,1.778-1.778H180.4a1.778,1.778,0,0,1,1.777,1.777h0l0,53.073A1.777,1.777,0,0,1,180.4-168.9Z" fill="url(#radial-gradient)"/>
+    <path id="패스_13" data-name="패스 13" d="M392.065-227.539a2.354,2.354,0,0,0-2.352-2.354H336.252a2.353,2.353,0,0,0-2.354,2.352v124.06h58.167Zm-31.51,3.794v53.073a1.778,1.778,0,0,1-1.778,1.777H340a1.776,1.776,0,0,1-1.777-1.777v-53.073A1.777,1.777,0,0,1,340-225.523h18.78a1.778,1.778,0,0,1,1.778,1.778Zm25.122,54.85H366.895a1.777,1.777,0,0,1-1.778-1.777v-53.073a1.778,1.778,0,0,1,1.778-1.778h18.779a1.778,1.778,0,0,1,1.778,1.778h0l0,53.073A1.778,1.778,0,0,1,385.677-168.9Z" fill="url(#radial-gradient-2)"/>
+    <path id="패스_14" data-name="패스 14" d="M110.261-80.071A25.4,25.4,0,0,0,129.78-99.59H80.106A25.4,25.4,0,0,0,110.261-80.071Z" fill="url(#radial-gradient-3)"/>
+    <path id="패스_15" data-name="패스 15" d="M134.1-99.59a25.4,25.4,0,0,0,30.153,19.522A25.4,25.4,0,0,0,183.771-99.59Z" fill="url(#radial-gradient-4)"/>
+    <path id="패스_16" data-name="패스 16" d="M367.071-80.071A25.4,25.4,0,0,0,386.59-99.59H336.916A25.4,25.4,0,0,0,367.071-80.071Z" fill="url(#radial-gradient-5)"/>
+    <path id="패스_17" data-name="패스 17" d="M421.061-80.071A25.4,25.4,0,0,0,440.58-99.59H390.906A25.4,25.4,0,0,0,421.061-80.071Z" fill="url(#radial-gradient-6)"/>
+    <path id="패스_18" data-name="패스 18" d="M448.932-275.616h-51.4v-8.273a3.662,3.662,0,0,0-3.66-3.662H317.149a3.662,3.662,0,0,0-3.662,3.66v8.275H202.346v-8.273a3.663,3.663,0,0,0-3.662-3.662H121.957a3.662,3.662,0,0,0-3.662,3.662v8.273H71.707a9.99,9.99,0,0,0-9.991,9.989V-103.48h63.976V-231.959a2.352,2.352,0,0,1,2.352-2.352h59.077a2.354,2.354,0,0,1,2.354,2.352h0V-103.48h24.4v13.928L182.752-56.988H329.144L298.021-89.552V-103.48h32.951V-231.959a2.353,2.353,0,0,1,2.354-2.352H392.4a2.352,2.352,0,0,1,2.354,2.35V-103.48h64.168V-265.627A9.991,9.991,0,0,0,448.932-275.616ZM115.989-128.743H64.406v-30.451H115.99ZM76.7-184.6v-33.621a2.833,2.833,0,0,1,2.833-2.83h33.621a2.834,2.834,0,0,1,2.833,2.833V-184.6a2.833,2.833,0,0,1-2.833,2.833H79.535A2.833,2.833,0,0,1,76.7-184.6Zm115.846,55.858v-30.451h130.64v30.451ZM205.036-184.6v-33.627a2.833,2.833,0,0,1,2.836-2.83H314.206a2.834,2.834,0,0,1,2.833,2.833V-184.6a2.833,2.833,0,0,1-2.833,2.833H207.872A2.832,2.832,0,0,1,205.036-184.6Zm249.08,55.852H402.532v-30.451h51.584ZM404.838-184.6v-33.625a2.833,2.833,0,0,1,2.834-2.83h33.621a2.834,2.834,0,0,1,2.833,2.833V-184.6a2.833,2.833,0,0,1-2.833,2.833H407.672A2.832,2.832,0,0,1,404.838-184.6Zm49.278-57.3H64.887v-14.407H454.116Z" fill="url(#radial-gradient-7)"/>
+  </g>
+</svg>
