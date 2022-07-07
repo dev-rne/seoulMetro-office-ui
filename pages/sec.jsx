@@ -14,7 +14,7 @@ const Hidden = () => {
   const [pw, setPw] = useState('')
 
   useEffect(() => {
-    const user = sessionStorage.getItem("user");
+    const user = sessionStorage.getItem("sec_user");
     if(!user){
       setIsModalVisible(true)
     }else{
@@ -34,7 +34,7 @@ const Hidden = () => {
       message.error("아이디나 비밀번호를 확인해주세요");
       return;
     }
-    sessionStorage.setItem("user", id);
+    sessionStorage.setItem("sec_user", id);
     setLogin(true)
     setIsModalVisible(false)
   }

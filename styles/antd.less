@@ -204,3 +204,28 @@
   font-size:12px
 }
 
+.adminMessage{
+  .@{message-prefix-cls} {
+    &-notice-content {
+      color:white !important;
+     background: #9e0202;
+     border-radius: 8px;
+    }
+    &-error .anticon{
+      color: rgb(252, 222, 222)
+    }
+  }
+}
+
+.successChange{
+  .@{message-prefix-cls} {
+    &-notice-content {
+      color:white !important;
+     background: #0076fd;
+     border-radius: 8px;
+    }
+    &-success .anticon{
+      color: rgb(208, 223, 255)
+    }
+  }
+}

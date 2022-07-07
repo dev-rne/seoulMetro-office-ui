@@ -1,7 +1,7 @@
 import Main from "./main";
 import Modal from "./modal";
-import Sec from './sec'
+import Admin from './admin'
 
-const useStore = () => ({ Main, Modal, Sec })
+const useStore = () => ({ Main, Modal, Admin })
 
 export default useStore
