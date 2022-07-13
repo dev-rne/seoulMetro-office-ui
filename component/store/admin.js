@@ -10,8 +10,8 @@ const Admin = observable({
         })
     },
     postSerialNumberAPI(data){
-        axios.post(`${process.env.NEXT_PUBLIC_AXIOS_URL}/api/rule/sensors`, data).then(res => {
-            this.serialNumArr = res.data;
+        axios.post(`${process.env.NEXT_PUBLIC_AXIOS_URL}/api/rule/sensors`, data).then((res) => {
+            this.callSerialNumberAPI()
             this.changeSerial++
         })
     }
