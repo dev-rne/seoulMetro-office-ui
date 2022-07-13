@@ -34,9 +34,9 @@ const Main = observable({
            })
         });
     },
-    async callAnomaly(){
-       
-        await axios.get(`${apiKey}/api/rule/carriage-info`).then(response => {
+    callAnomaly(){
+        // axios.get(`${apiKey}/api/rule/carriage-info`)
+        axios.get('./data/carriage-info.json').then(response => {
            runInAction(() => {
             this.anomaly = response.data;
             // this.location = response.data[0]?.bearing_location
@@ -44,8 +44,9 @@ const Main = observable({
         });
     },
     callRms({location, date}){
-        axios.get(`${apiKey}/api/rule/data-feature?category=rms&bearingLocation=${location}&startDate=${date}
-        `).then(response => {
+        // axios.get(`${apiKey}/api/rule/data-feature?category=rms&bearingLocation=${location}&startDate=${date}
+        // `)
+        axios.get('./data/rms.json').then(response => {
             runInAction(() => {
                 this.rms = response.data;
             })

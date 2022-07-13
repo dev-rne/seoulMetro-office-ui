@@ -28,8 +28,8 @@ const Main = observable({
         });
     },
     callTotalChart(date){
-        axios.get(`${apiKey}/api/rule/data-feature?bearingLocation=${this.selectLocation}&startDate=${date}
-        `).then(response => {
+        // axios.get(`${apiKey}/api/rule/data-feature?bearingLocation=${this.selectLocation}&startDate=${date}`)
+        axios.get('./data/feature.json').then(response => {
             this.resetData();
             runInAction(() => {
                 let data = response.data
@@ -54,54 +54,56 @@ const Main = observable({
         });
     },
     callCsvData(date){
-        axios.get(`${apiKey}/api/rule/data-feature?bearingLocation=${this.selectLocation}&startDate=${date}
-        `).then(response => {
+        // axios.get(`${apiKey}/api/rule/data-feature?bearingLocation=${this.selectLocation}&startDate=${date}
+        // `)
+        axios.get('./data/csv.json').then(response => {
             runInAction(() => {
                this.csvData = response.data;
             })
         });
     },
     callModalStatus(location){
-        axios.get(`${apiKey}/api/rule/data-diagnosis?bearingLocation=${location}
-        `).then(response => {
+        // axios.get(`${apiKey}/api/rule/data-diagnosis?bearingLocation=${location}
+        // `)
+        axios.get('./data/diagnosis.json').then(response => {
             runInAction(() => {
                 this.statusData = response.data;
             })
         });
     },
     callPeriodChartData({date, category}){
-        axios.get(`${apiKey}/api/rule/data-feature?category=${category}&bearingLocation=${this.selectLocation}&startDate=${date}
-        `).then(response => {
-            runInAction(() => {
-                switch(category){
-                    case "rms":
-                        this.modalRms = this.settingArray(response.data, category)
-                        this.rmsThreshold = response.data.rms.threshold;
-                        break;
-                    case "peak_to_peak":
-                        this.modalPeakToPeak = this.settingArray(response.data, category)
-                        this.peakToPeakThreshold = response.data.peak_to_peak.threshold;
-                        break;
-                    case "kurtosis":
-                        this.modalKurtosis = this.settingArray(response.data, category)
-                        this.kurtosisThreshold = response.data.kurtosis.threshold;
-                        break;
-                    case "crest_factor":
-                        this.modalCrestFactor = this.settingArray(response.data, category)
-                        this.crestFactorThreshold = response.data.crest_factor.threshold;
-                        break;
-                    case "shape_factor":
-                        this.modalShapeFactor = this.settingArray(response.data, category)
-                        this.shapeFactorThreshold = response.data.shape_factor.threshold;
-                        break;
-                    case "temperature":
-                        this.modalTemperature = this.settingArray(response.data, category);
-                        this.temperatureThreshold = response.data.temperature.threshold;
-                        break;
-                }
-            })
-            this.callObjectData++
-        });
+        // axios.get(`${apiKey}/api/rule/data-feature?category=${category}&bearingLocation=${this.selectLocation}&startDate=${date}
+        // `).then(response => {
+        //     runInAction(() => {
+        //         switch(category){
+        //             case "rms":
+        //                 this.modalRms = this.settingArray(response.data, category)
+        //                 this.rmsThreshold = response.data.rms.threshold;
+        //                 break;
+        //             case "peak_to_peak":
+        //                 this.modalPeakToPeak = this.settingArray(response.data, category)
+        //                 this.peakToPeakThreshold = response.data.peak_to_peak.threshold;
+        //                 break;
+        //             case "kurtosis":
+        //                 this.modalKurtosis = this.settingArray(response.data, category)
+        //                 this.kurtosisThreshold = response.data.kurtosis.threshold;
+        //                 break;
+        //             case "crest_factor":
+        //                 this.modalCrestFactor = this.settingArray(response.data, category)
+        //                 this.crestFactorThreshold = response.data.crest_factor.threshold;
+        //                 break;
+        //             case "shape_factor":
+        //                 this.modalShapeFactor = this.settingArray(response.data, category)
+        //                 this.shapeFactorThreshold = response.data.shape_factor.threshold;
+        //                 break;
+        //             case "temperature":
+        //                 this.modalTemperature = this.settingArray(response.data, category);
+        //                 this.temperatureThreshold = response.data.temperature.threshold;
+        //                 break;
+        //         }
+        //     })
+        //     this.callObjectData++
+        // });
     },
     settingArray(data,key){
         let dataArr = []
